@@ -11,14 +11,23 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='tour',
+            name='exclusions',
+        ),
+        migrations.RemoveField(
+            model_name='tour',
+            name='inclusions',
+        ),
+        migrations.AddField(
             model_name='tour',
             name='exclusions',
             field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), blank=True, default=list, size=None),
         ),
-        migrations.AlterField(
+        migrations.AddField(
             model_name='tour',
             name='inclusions',
             field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), blank=True, default=list, size=None),
         ),
     ]
+

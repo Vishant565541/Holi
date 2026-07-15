@@ -11,9 +11,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='hotel',
+            name='amenities',
+        ),
+        migrations.AddField(
             model_name='hotel',
             name='amenities',
             field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=100), blank=True, default=list, size=None),
         ),
     ]
+
