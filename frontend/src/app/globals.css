@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #020B1E;
+  --color-foreground: #F5F7FA;
+  --color-secondary: #051433;
+  --color-card-bg: rgba(5, 20, 51, 0.5);
+  --color-gold: #C5A880;
+  --color-gold-hover: #E3C69D;
+  --color-teal: #3B82F6;
+  --color-grey-text: #A2B3CB;
+  --color-luxury-border: rgba(197, 168, 128, 0.15);
+  --font-space: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+  --font-luxury: var(--font-manrope);
+  --font-serif: var(--font-playfair-display);
+}
+
+:root {
+  --background: #020B1E;
+  --foreground: #F5F7FA;
+}
+
+body {
+  background-color: #020B1E;
+  color: #F5F7FA;
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(5, 20, 51, 0.7) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(197, 168, 128, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Glassmorphism custom components */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel {
+  background: rgba(11, 18, 32, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Glow effects */
+.glow-gold {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+}
+
+.glow-teal {
+  box-shadow: 0 0 30px rgba(45, 212, 191, 0.15);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020B1E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 168, 128, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 168, 128, 0.5);
+}
+
+.text-gold {
+  color: #C5A880;
+}
+
+.bg-gold {
+  background-color: #C5A880;
+}
+
+.border-gold {
+  border-color: #C5A880;
+}
+
+/* High contrast overrides for cards to bypass dark-mode browser inversion */
+.high-contrast-card {
+  background-color: #051433 !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.high-contrast-card h3 {
+  color: #ffffff !important;
+}
+
+.high-contrast-card .text-white-explicit {
+  color: #ffffff !important;
+}
+
+.high-contrast-card .text-slate-light {
+  color: #cbd5e1 !important;
+}
+
+.high-contrast-card .text-slate-muted {
+  color: #94a3b8 !important;
+}
+
+.high-contrast-card .text-gold-explicit {
+  color: #C5A880 !important;
+}
+
+.high-contrast-card .btn-explicit {
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background-color: #020B1E !important;
+}
+
+.high-contrast-card .btn-explicit:hover {
+  color: #020B1E !important;
+  background-color: #C5A880 !important;
+  border-color: #C5A880 !important;
+}

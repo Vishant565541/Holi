@@ -1,0 +1,48 @@
+# Tasks
+
+- [x] Spacing & Styles Configuration
+  - [x] Modify `layout.tsx` to load `Playfair_Display` and set the variable
+  - [x] Modify `globals.css` to define the serif font and update Tailwind `@theme` variables (champagne gold, deep navy blue)
+  - [x] Add high contrast explicit classes in `globals.css` with `!important` tags to bypass auto-dark-mode browser overrides
+  - [x] Integrate global Google Fonts `@import url` in `globals.css` to bypass local scope next/font loader issues in external renderers
+  - [x] Fix PostCSS compile ordering constraint by placing Google Font imports *before* `@import "tailwindcss"`
+- [x] Layout Components
+  - [x] Modify `Navbar.tsx` to match navigation links, contact number, and user button structure
+  - [x] Modify `Footer.tsx` styles to align with colors
+  - [x] Remove numeric phone number from Navbar and replace with 'Contact Us' link (desktop & mobile)
+  - [x] Remove the duplicate "Contact Us" link from Navbar right side action menu, keeping only the main menu link
+  - [x] Consolidate 'Helicopter Booking', 'Tour Packages', 'Hotels', and 'Boat Services' navbar items into a single 'Services' link
+  - [x] Add dynamic hover dropdown (desktop) and accordion submenu (mobile) to 'Services' menu link listing the 4 offerings
+  - [x] Overhaul Navbar background to an elegant white, increase the brand logo size to `h-14`, and adjust menu links/icons to dark slate (`text-slate-800`)
+  - [x] Add GSTIN, helplines, and email info from flyer directly into the brand info column in the Footer
+- [x] Landing Page Content
+  - [x] Redesign `page.tsx` (Hero, Feature row, Services, Why Choose Us, Popular Tour Packages, stats)
+  - [x] Overhaul Services and Package card backgrounds to solid `#051433` and use high-contrast text color classes to prevent auto-dark mode inversion
+  - [x] Modify `SearchBox.tsx` styling to match theme colors
+  - [x] Add flyer bullet list features to the Hero section (Premium Helicopter, Scenic Tours, Hotels & Cruises)
+  - [x] Create a dedicated layout split banner for "YOUR JOURNEY, OUR PRIORITY" with flyer images block (Kedarnath, Yacht, Beachfront)
+  - [x] Inject explicit inline style attributes on Popular Packages text and action buttons to enforce high-contrast whites, golds, and slates, bypassing dark mode browser inversions
+  - [x] Replace the homepage hero image with the local flyer helicopter jet photo `luxury_helicopter_hero_1783848402751.png`
+- [x] Dedicated Services Page
+  - [x] Create a new dedicated services landing page `src/app/services/page.tsx` containing cards and actions for all 4 services
+- [x] Dynamic Avionics Search & Telemetry Vector Map
+  - [x] Overhaul `booking/page.tsx` to allow dynamic inline modifications for Source, Destination, Date, and Passengers
+  - [x] Add a detailed "Hospitality Services" checklist calculating extra costs (VIP Lounge, gourmet meals, porter darshan, ground cars)
+  - [x] Render a live telemetry flight path curved vector map with coordinates logging and animated beacon traversal using SVG animateMotion
+  - [x] Clean up redundant search parameters subtitle under "Available Air Charters" title
+  - [x] Remove the "Filter Flights" (Max Price slider & Sort selection) block from the sidebar to streamline the user controls panel
+- [x] About Us Page Overhaul
+  - [x] Overhaul `about/page.tsx` with a luxury brand design structure
+  - [x] Generate a custom photorealistic luxury private hangar showpiece image `luxury_hangar_about.png` and render it as the page cover
+  - [x] Integrate flyer travel pillars, GSTIN credentials, email details, and helplines into the About page
+- [x] Contact Us Page Overhaul
+  - [x] Overhaul `contact/page.tsx` layout and content
+  - [x] Add flyer helplines, email coordinates, and GSTIN registration numbers prominently at the top
+  - [x] Add an interactive **Flight Request Status Tracker** tool matching coordinates and stages dynamically
+  - [x] Build a dynamic client-side **FAQ Accordion** module explaining baggage, pilot, and weather delay rules
+  - [x] Update office list and emergency desk coordinates to use the real helpline numbers from the flyer
+  - [x] Omit the registered business address entirely from all public sections as requested
+  - [x] Generate a custom photorealistic luxury lobby concierge desk showpiece image `luxury_concierge_contact.png` and render it as the Contact page visual banner
+- [x] Verification
+  - [x] Run `npm run build` or inspect files to ensure the frontend builds cleanly
+  - [x] Terminate duplicate background Next.js dev server on port 3000 and launch a fresh Next.js dev server instance
