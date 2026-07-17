@@ -28,7 +28,7 @@ import {
 } from "lucide-react";
 
 // ── Admin credentials ─────────────────────────────────────────────────────────
-const ADMIN_EMAIL = "sentavishatj@gmail.com";
+const ADMIN_EMAIL = "sentavishant5655@gmail.com";
 const ADMIN_PASS  = "vishant@5655";
 const SESSION_KEY = "roman_admin_auth";
 
@@ -47,7 +47,9 @@ function AdminLoginGate({ onSuccess }: { onSuccess: () => void }) {
     setTimeout(() => {
       const normalizedEmail = email.trim().toLowerCase();
       if (
-        (normalizedEmail === "sentavishatj@gmail.com" || normalizedEmail === "sentavishantj@gmail.com") &&
+        (normalizedEmail === "sentavishatj@gmail.com" || 
+         normalizedEmail === "sentavishantj@gmail.com" || 
+         normalizedEmail === "sentavishant5655@gmail.com") &&
         pass === ADMIN_PASS
       ) {
         sessionStorage.setItem(SESSION_KEY, "1");
