@@ -25,7 +25,7 @@ const ARTICLES: Article[] = [
     date: "July 12, 2026",
     author: "Capt. A. Singh (Retd. IAF)",
     readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1626014903708-544413740c4c?q=80&w=800&auto=format&fit=crop",
     content: [
       "Securing a helicopter slot for Kedarnath is one of the most crucial aspects of planning your Himalayan pilgrimage. For the 2026 season, the Directorate General of Civil Aviation (DGCA) and Uttarakhand Civil Aviation Development Authority (UCADA) have announced synchronized booking schedules aligned with the temple opening dates.",
       "Official slot calendars open in phases, starting 30 days prior to the opening of the shrine. It is mandatory for all pilgrims to register on the official Uttarakhand Tourist Care portal before attempting to book a helicopter ticket, as your unique registration key will be verified during the manifest logging.",
@@ -40,7 +40,7 @@ const ARTICLES: Article[] = [
     date: "June 28, 2026",
     author: "Devi Shastry",
     readTime: "12 min read",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1562016600-ece13e8ba570?q=80&w=800&auto=format&fit=crop",
     content: [
       "The Char Dham Yatra—encompassing Yamunotri, Gangotri, Kedarnath, and Badrinath—is a spiritual odyssey of a lifetime. Traveling via helicopter offers unparalleled convenience and comfort, bypassing days of grueling road travel. However, understanding the cost elements is vital for budgeting.",
       "A VIP private helicopter charter typically runs between ₹4,50,000 to ₹5,80,000 per package, depending on occupancy levels, aircraft model (such as the spacious twin-engine Airbus H145), and the quality of accommodations at each valley stop.",
@@ -55,7 +55,7 @@ const ARTICLES: Article[] = [
     date: "May 15, 2026",
     author: "Dr. Priya Nair",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1585016495481-91613a37932d?q=80&w=800&auto=format&fit=crop",
     content: [
       "Located in the Trikuta Mountains of Jammu & Kashmir, the holy shrine of Mata Vaishno Devi attracts millions of devotees annually. The helicopter ride from Katra base to Sanjichhat helipad reduces a steep 12 km trek into a scenic 8-minute flight.",
       "Choosing the right season for your flight is key. The ideal windows are March to June (spring-summer) and September to November (autumn). During these months, the weather coordinates are highly stable, maximizing flight safety and reducing air corridor standby holds.",

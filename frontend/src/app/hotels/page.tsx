@@ -93,6 +93,7 @@ function HotelsListingContent() {
   const [selected, setSelected] = useState<SelectedHotelDetails | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isMockMode, setIsMockMode] = useState(false);
 
   // Auto-trigger search if cityName is pre-filled from searchParams (or destination fallback)
   useEffect(() => {
@@ -119,6 +120,7 @@ function HotelsListingContent() {
           const data = await r.json();
           if (!r.ok) throw new Error(data.error || "Search failed");
           setHotels(data.hotels);
+          setIsMockMode(!!data.mock);
         } catch (err: any) {
           setError(err.message);
         } finally {
@@ -159,6 +161,7 @@ function HotelsListingContent() {
       const data = await r.json();
       if (!r.ok) throw new Error(data.error || "Search failed");
       setHotels(data.hotels);
+      setIsMockMode(!!data.mock);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -291,6 +294,19 @@ function HotelsListingContent() {
         </button>
       </form>
 
+      {/* Real payment gateway logos and SSL secure badge */}
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 border border-white/5 bg-white/2 rounded-xl text-[10px] uppercase font-space text-grey-text mb-6">
+        <div className="flex items-center gap-2">
+          <ShieldAlert className="h-4 w-4 text-gold" />
+          <span>SSL 256-bit Encrypted Checkout | Safe & Secure Bookings</span>
+        </div>
+        <div className="flex items-center gap-3 grayscale opacity-60">
+          <span className="text-[9px] font-bold">Razorpay</span>
+          <span className="text-[9px] font-bold">PayU</span>
+          <span className="text-[9px] font-bold">Stripe</span>
+        </div>
+      </div>
+
       {/* Error banner */}
       <AnimatePresence>
         {error && (
@@ -311,6 +327,16 @@ function HotelsListingContent() {
         <div className="py-20 text-center text-xs font-luxury text-grey-text">
           <RefreshCw className="h-6 w-6 text-gold animate-spin mx-auto mb-2" />
           Fetching live luxury rates…
+        </div>
+      )}
+
+      {/* Mock mode info banner */}
+      {isMockMode && hotels && (
+        <div className="mb-6 flex items-center gap-3 bg-gold/5 border border-gold/20 rounded-xl px-4 py-3 text-xs font-luxury text-gold/80">
+          <Star className="w-4 h-4 shrink-0 text-gold" />
+          <span>
+            <strong>Sample Properties</strong> — Showing curated showcase hotels. Live hotel inventory will appear once the hotel API is connected.
+          </span>
         </div>
       )}
 
@@ -489,6 +515,43 @@ function HotelsListingContent() {
           </div>
         </div>
       )}
+
+      {/* ── HOTEL BOOKING FAQ SECTION ──────────────────────────────────────── */}
+      <div className="mt-20 border-t border-white/5 pt-16 text-left max-w-4xl mx-auto">
+        <div className="flex flex-col gap-2 mb-10 text-center">
+          <span className="font-space text-xs uppercase tracking-widest text-gold font-bold">Resort Help Desk</span>
+          <h2 className="font-serif text-2xl md:text-3xl font-bold text-white">Hotel Booking FAQs</h2>
+          <div className="h-[1px] w-12 bg-gold mx-auto mt-2" />
+        </div>
+
+        <div className="flex flex-col gap-4 text-xs font-sans text-slate-300">
+          {[
+            {
+              q: "Does my reservation include direct private helipad access?",
+              a: "Many of our partner hotels, including Aman-i-Khas Wilds and luxury estates, feature private landing clearances. During checkout, you can request custom flight coordinates to land directly on the resort helipads."
+            },
+            {
+              q: "Can I cancel my hotel suite booking with a full refund?",
+              a: "Cancellation rules depend strictly on the selected room offer. Offers marked with 'Free cancellation' can be cancelled without penalty up to the cancelBy date shown. Non-refundable offers are ineligible for refunds upon lock-in."
+            },
+            {
+              q: "Are airport tarmac limousine transfers included?",
+              a: "Limousine tarmac transfers are available as premium add-ons at checkout or complimentary when booked as part of our high-end spiritual and coastal tour packages."
+            },
+            {
+              q: "What documentation is required at resort check-in?",
+              a: "Guests must present a valid physical passport, Aadhaar card, or government photo ID matching the names logged in the booking manifest. PAN cards are not accepted."
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="bg-white/2 border border-white/10 rounded-lg p-5">
+              <h4 className="font-space text-sm font-bold text-white mb-2 flex items-center gap-2">
+                <span className="text-gold">Q.</span> {item.q}
+              </h4>
+              <p className="leading-relaxed text-slate-300 pl-4">{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

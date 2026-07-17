@@ -118,7 +118,7 @@ export default function SearchBox() {
   return (
     <div className="w-full max-w-5xl mx-auto bg-white text-black rounded-xl overflow-hidden shadow-2xl border border-slate-200">
       {/* Search Type Selector Tabs */}
-      <div className="flex border-b border-slate-100 bg-slate-50">
+      <div className="flex border-b border-slate-100 bg-slate-50 overflow-x-auto scrollbar-none whitespace-nowrap">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -138,14 +138,14 @@ export default function SearchBox() {
                 setFromQuery("");
                 setToQuery("");
               }}
-              className={`flex-1 flex items-center justify-center gap-2 py-4 px-3 font-space text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+              className={`flex-none sm:flex-1 flex items-center justify-center gap-2 py-4 px-5 font-space text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 shrink-0 ${
                 isActive
                   ? "bg-white text-black border-t-2 border-[#C5A880]"
                   : "text-slate-400 hover:text-black hover:bg-slate-100/50"
               }`}
             >
               <Icon className={`h-4.5 w-4.5 ${isActive ? "text-[#C5A880]" : "text-slate-400"}`} />
-              <span className="hidden sm:inline">{tab.name}</span>
+              <span className="inline">{tab.name}</span>
             </button>
           );
         })}

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import BookingProgressTracker from "@/components/booking/BookingProgressTracker";
 import { useCartStore } from "@/store/useCartStore";
 import { useAuthStore } from "@/store/useAuthStore";
 import { ShieldCheck, Compass, CreditCard, Laptop, RefreshCw, XCircle, CheckCircle } from "lucide-react";
@@ -202,6 +203,7 @@ export default function PaymentPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
+      <BookingProgressTracker currentStep={4} />
       {/* Title */}
       <div className="border-b border-white/5 pb-6 mb-10">
         <h1 className="font-space text-3xl font-bold tracking-tight">VIP Secure Payment Portal</h1>

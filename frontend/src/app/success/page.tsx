@@ -3,6 +3,7 @@
 import React, { Suspense, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import BookingProgressTracker from "@/components/booking/BookingProgressTracker";
 import { useAuthStore } from "@/store/useAuthStore";
 import { CheckCircle2, FileText, ArrowRight, Printer, Share2, Clipboard } from "lucide-react";
 import { motion } from "framer-motion";
@@ -50,6 +51,7 @@ function SuccessPageContent() {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-12 flex flex-col gap-8 items-center text-center">
+      <BookingProgressTracker currentStep={5} />
       {/* Confetti & success header */}
       <div className="flex flex-col items-center gap-3">
         <div className="h-16 w-16 rounded-full bg-teal/10 border border-teal/30 flex items-center justify-center text-teal shadow-lg shadow-teal/5 animate-pulse">

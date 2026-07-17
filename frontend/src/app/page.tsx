@@ -509,7 +509,9 @@ export default function Home() {
             <p className="font-sans text-xs text-slate-300 leading-relaxed">
               Fully authorized under Non-Scheduled Operator Permit (NSOP) No. 24/2026 issued by the Directorate General of Civil Aviation, Government of India.
             </p>
-            <span className="font-mono text-[10px] text-[#C5A880] mt-auto block font-semibold">LICENSE: NSOP-24/2026-DGCA</span>
+            <a href="/dgca-operator-license.pdf" target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] text-[#C5A880] hover:underline mt-auto block font-semibold">
+              LICENSE: NSOP-24/2026-DGCA (Verify/Download PDF) ↗
+            </a>
           </div>
           
           {/* Card 2: Insurance Coverage */}
@@ -815,7 +817,7 @@ export default function Home() {
               desc: "Learn about official slot booking calendars, DGCA regulations, baggage constraints, and flight timings for the 2026 pilgrimage season.",
               date: "July 12, 2026",
               author: "Capt. A. Singh",
-              image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=400&auto=format&fit=crop",
+              image: "https://images.unsplash.com/photo-1626014903708-544413740c4c?q=80&w=400&auto=format&fit=crop",
               alt: "Snow peaks on route to Kedarnath temple sanctum"
             },
             {
@@ -823,7 +825,7 @@ export default function Home() {
               desc: "A detailed pricing and budget breakdown comparing VIP private helicopter charters with group flight shuttles and premium hotel stops.",
               date: "June 28, 2026",
               author: "Devi Shastry",
-              image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop",
+              image: "https://images.unsplash.com/photo-1562016600-ece13e8ba570?q=80&w=400&auto=format&fit=crop",
               alt: "Ancient temple architecture nestled in high mountain valley"
             },
             {
@@ -831,7 +833,7 @@ export default function Home() {
               desc: "Understand peak seasons, weather coordinates, monsoon delay schedules, and how to book express Darshan passes in Katra.",
               date: "May 15, 2026",
               author: "Dr. P. Nair",
-              image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?q=80&w=400&auto=format&fit=crop",
+              image: "https://images.unsplash.com/photo-1585016495481-91613a37932d?q=80&w=400&auto=format&fit=crop",
               alt: "Green valley landscape around Vaishno Devi Katra terminal"
             }
           ].map((article, idx) => (

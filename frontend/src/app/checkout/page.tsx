@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import BookingProgressTracker from "@/components/booking/BookingProgressTracker";
 import { useCartStore, Passenger, AddOn } from "@/store/useCartStore";
 import { useAuthStore } from "@/store/useAuthStore";
 import { User, ShieldCheck, Ticket, Trash2, CheckCircle2, ChevronRight, Armchair, Award } from "lucide-react";
@@ -159,9 +160,11 @@ export default function CheckoutPage() {
   const HELI_SEATS = ["1A", "1B", "2A", "2B", "3A", "3B"];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-      {/* Left Columns: Forms, Seat maps, addons */}
-      <div className="lg:col-span-8 flex flex-col gap-8">
+    <div className="max-w-7xl mx-auto px-6 py-8">
+      <BookingProgressTracker currentStep={3} />
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* Left Columns: Forms, Seat maps, addons */}
+        <div className="lg:col-span-8 flex flex-col gap-8">
         <div>
           <h1 className="font-space text-3xl font-bold tracking-tight">Luxury Flight Checkout</h1>
           <p className="font-luxury text-sm text-grey-text mt-1">
@@ -468,6 +471,7 @@ export default function CheckoutPage() {
               </span>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

@@ -24,7 +24,8 @@ import {
   Eye,
   EyeOff,
   AlertCircle,
-  ShieldCheck
+  ShieldCheck,
+  Menu
 } from "lucide-react";
 
 // ── Admin credentials ─────────────────────────────────────────────────────────
@@ -140,6 +141,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const [adminAuthed, setAdminAuthed] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem(SESSION_KEY) === "1") {
@@ -147,6 +149,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     }
     setCheckingAuth(false);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   const menuItems = [
     { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -189,17 +195,27 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="flex min-h-screen bg-background text-foreground font-luxury overflow-hidden">
+    <div className="flex min-h-screen bg-background text-foreground font-luxury overflow-hidden relative">
+      {/* Backdrop for mobile */}
+      {mobileOpen && (
+        <div 
+          onClick={() => setMobileOpen(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 lg:hidden"
+        />
+      )}
+
       {/* 1. COLLAPSIBLE SIDEBAR */}
       <aside
-        className={`bg-[#0b0f19] border-r border-white/5 flex flex-col justify-between transition-all duration-300 relative z-30 shrink-0 text-white ${
+        className={`bg-[#0b0f19] border-r border-white/5 flex flex-col justify-between transition-all duration-300 fixed lg:relative top-0 bottom-0 left-0 z-30 shrink-0 text-white h-screen lg:h-auto ${
           collapsed ? "w-16" : "w-64"
+        } ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
         {/* Toggle arrow button */}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="absolute -right-3 top-6 h-6 w-6 rounded-full bg-gold border border-gold/30 flex items-center justify-center text-black cursor-pointer shadow-lg hover:scale-105 transition-all"
+          className="absolute -right-3 top-6 h-6 w-6 rounded-full bg-gold border border-gold/30 flex items-center justify-center text-black cursor-pointer shadow-lg hover:scale-105 transition-all hidden lg:flex"
         >
           {collapsed ? <ChevronRight className="h-3.5 w-3.5" /> : <ChevronLeft className="h-3.5 w-3.5" />}
         </button>
@@ -252,9 +268,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Top Navbar Header */}
         <header className="h-16 border-b border-white/5 px-6 flex items-center justify-between bg-[#0b0f19]/80 backdrop-blur-md sticky top-0 z-20">
           {/* Left: Section title */}
-          <div className="flex items-center gap-2 text-xs">
-            <span className="text-grey-text uppercase tracking-widest">Portal Console</span>
-            <span className="text-white/20">/</span>
+          <div className="flex items-center gap-3 text-xs">
+            <button 
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden p-1.5 text-white hover:text-gold transition-colors focus:outline-none"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+            <span className="text-grey-text uppercase tracking-widest hidden sm:inline">Portal Console</span>
+            <span className="text-white/20 hidden sm:inline">/</span>
             <h1 className="font-space font-bold text-white uppercase tracking-wider text-[11px]">
               {getPageTitle()}
             </h1>

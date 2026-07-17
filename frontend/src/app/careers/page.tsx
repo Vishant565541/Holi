@@ -21,7 +21,69 @@ interface ExperienceEntry {
   duration: string;
 }
 
+// JOBS List
+const JOBS = [
+  {
+    title: "Air Hostess / Cabin Crew",
+    department: "In-Flight Services",
+    location: "New Delhi / Dehradun",
+    salary: "₹6,00,000 - ₹9,50,000 P.A.",
+    desc: "As a Cabin Crew member, you represent the highest standard of hospitality and safety. You will serve premium clients onboard luxury routes and chartered flights, ensuring a luxurious, safe, and memorable journey.",
+    responsibilities: [
+      "Maintain exceptional flight safety and security protocols onboard.",
+      "Deliver bespoke, premium dining and guest relations service to travelers.",
+      "Handle cabin emergencies with speed, calm, and efficiency.",
+      "Coordinate flight logistics with pilots and ground operational staff."
+    ],
+    criteria: [
+      "Age: 18 to 28 years.",
+      "Height: Minimum 155 cm (Female) / 170 cm (Male).",
+      "Fluency in English & Hindi (additional languages preferred).",
+      "No visible tattoos or piercings while in uniform."
+    ]
+  },
+  {
+    title: "Aviation Maintenance Engineer (AME)",
+    department: "Fleet Engineering",
+    location: "Dehradun Hangar Base",
+    salary: "₹12,00,000 - ₹18,00,000 P.A.",
+    desc: "Responsible for line maintenance, pre-flight safety checks, and telemetry logs for our Airbus H145 and Bell 429 helicopters.",
+    responsibilities: [
+      "Perform scheduled telemetry and mechanical inspections.",
+      "Verify engine and rotor blade fatigue standards under DGCA guidelines.",
+      "Sign off flight safety logs prior to daily staging.",
+      "Troubleshoot complex mechanical or avionics issues immediately."
+    ],
+    criteria: [
+      "Valid DGCA AME License (B1.3 or B2 rating).",
+      "Minimum 3 years of hands-on helicopter maintenance experience.",
+      "Thorough knowledge of Helionix avionics is a major advantage.",
+      "Strong analytical and emergency response capabilities."
+    ]
+  },
+  {
+    title: "First Officer / Co-Pilot (Bell 429)",
+    department: "Flight Operations",
+    location: "All bases (Pan-India)",
+    salary: "₹18,00,000 - ₹24,00,000 P.A.",
+    desc: "Assist the Pilot-in-Command in executing VFR flight corridors, ensuring precision flight logs, passenger comfort, and absolute safety standard compliance.",
+    responsibilities: [
+      "Conduct pre-flight weather path checks and fuel calculation audits.",
+      "Assist PIC in flight dynamics, autopilot configurations, and landing staging.",
+      "Monitor air traffic control corridors in real-time.",
+      "Ensure clean flight manifest logs are uploaded post-transit."
+    ],
+    criteria: [
+      "Current DGCA Commercial Pilot License (CPL/CHPL) with multi-engine rating.",
+      "Minimum 500 total flying hours (150 hours on turbine helicopters).",
+      "Valid FRTOL, RTR(A), and Class I Medical Certificate.",
+      "Excellent crew resource management (CRM) standards."
+    ]
+  }
+];
+
 export default function CareersPage() {
+  const [selectedJob, setSelectedJob] = useState<string>("Air Hostess / Cabin Crew");
   const [isApplying, setIsApplying] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -258,6 +320,7 @@ export default function CareersPage() {
       // 3. Compile full resume profile
       // Format qualifications: combine education list & certifications list into a readable qualification summary
       const formattedQualifications = JSON.stringify({
+        job: selectedJob,
         education: educationList,
         certifications: certificationsList.filter(c => c.trim() !== "")
       });
@@ -300,84 +363,85 @@ export default function CareersPage() {
       <div className="max-w-4xl w-full relative z-10">
         <AnimatePresence mode="wait">
           {!isApplying ? (
-            /* SECTION 1: ROLE OVERVIEW */
+            /* SECTION 1: ROLE OVERVIEW LIST */
             <motion.div
               key="overview"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
-              className="bg-gradient-to-b from-[#0b0f19] to-[#04060b] border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl flex flex-col gap-8"
+              className="flex flex-col gap-8 text-left"
             >
-              <div className="flex flex-col gap-3 text-center md:text-left">
-                <div className="inline-flex self-center md:self-start items-center gap-1.5 px-3 py-1 rounded-full bg-gold/5 border border-gold/25 text-[10px] uppercase tracking-widest text-gold font-bold">
+              <div className="text-center flex flex-col gap-3">
+                <div className="inline-flex self-center items-center gap-1.5 px-3 py-1 rounded-full bg-gold/5 border border-gold/25 text-[10px] uppercase tracking-widest text-gold font-bold">
                   <Sparkles className="h-3 w-3" />
-                  <span>Cabin Crew Vacancy</span>
+                  <span>Careers Hub</span>
                 </div>
                 <h1 className="font-space text-3xl md:text-4xl font-extrabold text-white leading-tight">
-                  Air Hostess / Cabin Crew
+                  Open Career Positions
                 </h1>
-                <p className="font-luxury text-sm text-gold tracking-wider uppercase font-semibold">
-                  Join the Elite Crew of Roman Aviation
+                <p className="font-luxury text-sm text-[#cbd5e1] leading-relaxed max-w-xl mx-auto text-center">
+                  Explore elite career opportunities across cabin hospitality, aircraft maintenance engineering, and pilot operations.
                 </p>
+                <div className="h-[1px] w-20 bg-gold mx-auto mt-2" />
               </div>
 
-              <div className="border-t border-white/5 pt-6">
-                <p className="font-luxury text-sm text-grey-text leading-relaxed text-center md:text-left">
-                  As a Cabin Crew member, you represent the highest standard of hospitality and safety. You will serve premium clients onboard luxury routes and chartered flights, ensuring a luxurious, safe, and memorable journey.
-                </p>
-              </div>
+              <div className="flex flex-col gap-6 max-w-3xl mx-auto w-full">
+                {JOBS.map((job) => (
+                  <div
+                    key={job.title}
+                    className="bg-[#051433]/40 border border-white/10 rounded-2xl p-6 hover:border-gold/30 transition-all duration-300 flex flex-col gap-4"
+                  >
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                      <div>
+                        <span className="text-[9px] uppercase tracking-wider text-gold font-bold font-space bg-gold/5 border border-gold/25 px-2.5 py-1 rounded">
+                          {job.department}
+                        </span>
+                        <h3 className="font-space text-lg font-bold text-white mt-2">{job.title}</h3>
+                        <div className="flex items-center gap-4 text-[10px] text-slate-400 font-mono mt-1">
+                          <span>📍 {job.location}</span>
+                          <span>💼 {job.salary}</span>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setSelectedJob(job.title);
+                          setIsApplying(true);
+                          setCurrentStep(1);
+                        }}
+                        className="px-6 py-2.5 bg-gold hover:bg-gold/90 text-black font-space text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all glow-gold border border-gold cursor-pointer shrink-0"
+                      >
+                        Apply Now
+                      </button>
+                    </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-                {/* Key Responsibilities */}
-                <div className="flex flex-col gap-4">
-                  <h3 className="font-space text-xs uppercase tracking-wider text-white font-bold flex items-center gap-2 border-b border-white/5 pb-2">
-                    <GraduationCap className="h-4.5 w-4.5 text-gold" />
-                    Key Responsibilities
-                  </h3>
-                  <ul className="flex flex-col gap-3">
-                    {[
-                      "Maintain exceptional flight safety and security protocols onboard.",
-                      "Deliver bespoke, premium dining and guest relations service to travelers.",
-                      "Handle cabin emergencies with speed, calm, and efficiency.",
-                      "Coordinate flight logistics with pilots and ground operational staff."
-                    ].map((resp, i) => (
-                      <li key={i} className="flex items-start gap-2.5 font-luxury text-xs text-grey-text leading-normal">
-                        <span className="h-1.5 w-1.5 rounded-full bg-gold/80 mt-1.5 shrink-0" />
-                        <span>{resp}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                    <p className="text-xs text-slate-300 font-sans leading-relaxed">{job.desc}</p>
 
-                {/* Eligibility Criteria */}
-                <div className="flex flex-col gap-4">
-                  <h3 className="font-space text-xs uppercase tracking-wider text-white font-bold flex items-center gap-2 border-b border-white/5 pb-2">
-                    <Scale className="h-4.5 w-4.5 text-gold" />
-                    Eligibility Criteria
-                  </h3>
-                  <ul className="flex flex-col gap-3">
-                    {[
-                      "Age: 18 to 28 years.",
-                      "Height: Minimum 155 cm (Female) / 170 cm (Male).",
-                      "Fluency in English & Hindi (additional languages preferred).",
-                      "No visible tattoos or piercings while in uniform."
-                    ].map((crit, i) => (
-                      <li key={i} className="flex items-start gap-2.5 font-luxury text-xs text-grey-text leading-normal">
-                        <Check className="h-4 w-4 text-gold shrink-0 mt-0.5" />
-                        <span>{crit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="flex justify-center md:justify-end mt-4">
-                <button
-                  onClick={() => setIsApplying(true)}
-                  className="px-8 py-3.5 bg-gold hover:bg-gold/90 text-black font-space text-xs font-bold uppercase tracking-widest rounded-lg transition-all glow-gold border border-gold cursor-pointer"
-                >
-                  Apply Now
-                </button>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 pt-4 border-t border-t-white/5">
+                      <div>
+                        <h4 className="text-[10px] font-space text-white uppercase font-bold tracking-wider mb-2">Key Responsibilities:</h4>
+                        <ul className="flex flex-col gap-1.5 text-[11px] text-slate-400">
+                          {job.responsibilities.slice(0, 3).map((r, i) => (
+                            <li key={i} className="flex items-start gap-1.5">
+                              <span className="h-1.5 w-1.5 rounded-full bg-gold/80 mt-1.5 shrink-0" />
+                              <span>{r}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-[10px] font-space text-white uppercase font-bold tracking-wider mb-2">Eligibility Criteria:</h4>
+                        <ul className="flex flex-col gap-1.5 text-[11px] text-slate-400">
+                          {job.criteria.slice(0, 3).map((c, i) => (
+                            <li key={i} className="flex items-start gap-1.5">
+                              <span className="text-gold shrink-0">✓</span>
+                              <span>{c}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           ) : success ? (

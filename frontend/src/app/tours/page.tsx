@@ -229,6 +229,58 @@ function ToursListingContent() {
         )}
       </AnimatePresence>
 
+      {/* ── STATIC COMPARISON TABLE ────────────────────────────────────────── */}
+      <div className="mt-20 border-t border-white/5 pt-16 text-left max-w-5xl mx-auto">
+        <div className="flex flex-col gap-2 mb-10 text-center">
+          <span className="font-space text-xs uppercase tracking-widest text-[#C5A880] font-bold">Package Index</span>
+          <h2 className="font-serif text-2xl md:text-3xl font-bold text-white">Compare Our Helicopter Retreats</h2>
+          <div className="h-[1px] w-12 bg-gold mx-auto mt-2" />
+        </div>
+
+        <div className="overflow-x-auto rounded-xl border border-white/10 bg-[#051433]/30 shadow-2xl">
+          <table className="w-full text-xs font-luxury border-collapse text-grey-text">
+            <thead>
+              <tr className="border-b border-white/10 bg-white/5 font-space text-[10px] uppercase tracking-wider text-gold">
+                <th className="p-4 text-left font-bold">Package Name</th>
+                <th className="p-4 text-center font-bold">Duration</th>
+                <th className="p-4 text-center font-bold">Starting Price</th>
+                <th className="p-4 text-left font-bold">Key Inclusions</th>
+                <th className="p-4 text-center font-bold">Safety Mandate</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5 text-slate-300">
+              <tr className="hover:bg-white/2 transition-colors">
+                <td className="p-4 font-space text-[11px] font-bold text-white uppercase tracking-wider">Himalayan Sacred Peaks</td>
+                <td className="p-4 text-center font-mono text-white">3 Days / 2 Nights</td>
+                <td className="p-4 text-center text-gold font-bold font-mono">₹4,99,000</td>
+                <td className="p-4 leading-relaxed">
+                  Airbus H145 helicopter, VIP Priority Darshan at Badrinath & Kedarnath, 5-Star mountain lodges, private guides & historians.
+                </td>
+                <td className="p-4 text-center text-teal">DGCA Approved / Dual Pilot</td>
+              </tr>
+              <tr className="hover:bg-white/2 transition-colors">
+                <td className="p-4 font-space text-[11px] font-bold text-white uppercase tracking-wider">Goan Yacht & Sky Odyssey</td>
+                <td className="p-4 text-center font-mono text-white">2 Days / 1 Night</td>
+                <td className="p-4 text-center text-gold font-bold font-mono">₹3,50,000</td>
+                <td className="p-4 leading-relaxed">
+                  Bell 429 helicopter shoreline tour, 6-Hour luxury yacht cruise with private chef, Taj Exotica beachfront villa stay.
+                </td>
+                <td className="p-4 text-center text-teal">DGCA Approved / Dual Pilot</td>
+              </tr>
+              <tr className="hover:bg-white/2 transition-colors">
+                <td className="p-4 font-space text-[11px] font-bold text-white uppercase tracking-wider">Vaishno Devi Charter</td>
+                <td className="p-4 text-center font-mono text-white">2 Days / 1 Night</td>
+                <td className="p-4 text-center text-gold font-bold font-mono">₹2,80,000</td>
+                <td className="p-4 leading-relaxed">
+                  AW109 regional VIP shuttle, priority Sanjichhat helipad access, wheel-chair staging concierge, Sarovar hotel stay.
+                </td>
+                <td className="p-4 text-center text-teal">DGCA Approved / Dual Pilot</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* Product JSON-LD structured schema for package listings */}
       <script
         type="application/ld+json"

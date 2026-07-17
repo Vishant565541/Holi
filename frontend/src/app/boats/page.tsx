@@ -149,6 +149,26 @@ function BoatsListingContent() {
                       </div>
                     ))}
                   </div>
+
+                  {/* Inclusions & Exclusions */}
+                  <div className="grid grid-cols-2 gap-4 mt-4 border-t border-white/5 pt-4">
+                    <div>
+                      <span className="text-[10px] font-space text-teal font-bold uppercase tracking-wider block mb-1">✓ Inclusions</span>
+                      <ul className="text-[10px] flex flex-col gap-1 text-slate-400">
+                        <li>• Certified Captain & Crew</li>
+                        <li>• Soft Beverages & Ice</li>
+                        <li>• Safety Vests & Marine GPS</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-space text-red-400 font-bold uppercase tracking-wider block mb-1">✗ Exclusions</span>
+                      <ul className="text-[10px] flex flex-col gap-1 text-slate-400">
+                        <li>• Jetski Attachments</li>
+                        <li>• Catering Surcharges</li>
+                        <li>• Crew Gratuities / Tips</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Duration Configurator */}
@@ -202,6 +222,43 @@ function BoatsListingContent() {
             </div>
           );
         })}
+      </div>
+
+      {/* ── YACHT & BOAT FAQ SECTION ───────────────────────────────────────── */}
+      <div className="mt-20 border-t border-white/5 pt-16 text-left max-w-4xl mx-auto">
+        <div className="flex flex-col gap-2 mb-10 text-center">
+          <span className="font-space text-xs uppercase tracking-widest text-gold font-bold">Harbor Support Desk</span>
+          <h2 className="font-serif text-2xl md:text-3xl font-bold text-white">Yacht Charter FAQs</h2>
+          <div className="h-[1px] w-12 bg-gold mx-auto mt-2" />
+        </div>
+
+        <div className="flex flex-col gap-4 text-xs font-sans text-slate-300">
+          {[
+            {
+              q: "Is fuel cost included in the listed hourly rate?",
+              a: "Yes. For our motor yachts (Prestige 75 Yacht), the listed hourly rate includes standard fuel consumption within a 15-mile coastal corridor. Heavy cruising speeds or specialized offshore destinations may incur additional surcharges."
+            },
+            {
+              q: "How does weather impact my yacht booking?",
+              a: "Marine operations depend strictly on wind speed and wave height coordinates. If the harbor master flags weather warnings or restricts sailings, we provide free priority rescheduling or a 100% refund."
+            },
+            {
+              q: "Can we bring our own food and alcohol onboard?",
+              a: "Yes. You are welcome to bring your own gourmet catering and beverages. Our onboard butler will be pleased to chill, prepare, and serve them for you. Corkage fees do not apply."
+            },
+            {
+              q: "What is the maximum passenger limit for day cruises?",
+              a: "For day cruises, the AURA Prestige 75 Yacht accommodates a maximum of 12 passengers plus 4 crew members. Houseboat stays in Kerala accommodate a maximum of 6 overnight guests."
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="bg-white/2 border border-white/10 rounded-lg p-5">
+              <h4 className="font-space text-sm font-bold text-white mb-2 flex items-center gap-2">
+                <span className="text-gold">Q.</span> {item.q}
+              </h4>
+              <p className="leading-relaxed text-slate-300 pl-4">{item.a}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

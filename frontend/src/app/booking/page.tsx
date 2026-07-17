@@ -3,6 +3,7 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import BookingProgressTracker from "@/components/booking/BookingProgressTracker";
 import { HELICOPTERS, HelicopterListing } from "@/utils/mockData";
 import { useCartStore } from "@/store/useCartStore";
 import { 
@@ -181,6 +182,7 @@ function BookingSearchContent() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-8">
+      <BookingProgressTracker currentStep={2} />
       {/* Header breadcrumb summary */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-white/5 pb-6 mb-8 gap-4">
         <div>
