@@ -149,7 +149,8 @@ export default function AuthPage() {
       });
       login(res.data.user, res.data.token);
       setStep("success");
-      setTimeout(() => router.push("/dashboard"), 1500);
+      const targetRoute = res.data.user?.role === "admin" ? "/admin" : "/dashboard";
+      setTimeout(() => router.push(targetRoute), 1500);
     } catch (err: any) {
       setError(err.response?.data?.error || "Login failed. Please check your credentials.");
     } finally {

