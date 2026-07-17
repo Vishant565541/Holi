@@ -207,6 +207,7 @@ if _email_host_user:
     EMAIL_HOST_USER = _email_host_user
     EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
     DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', f'AURA Travels <{_email_host_user}>')
+    EMAIL_TIMEOUT = 5
 else:
     # Development fallback — OTP is printed to Django console
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
