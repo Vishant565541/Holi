@@ -112,7 +112,7 @@ export default function AboutPage() {
             </div>
             <div className="flex items-center gap-3">
               <Mail className="h-4 w-4 text-gold shrink-0 text-gold-explicit" />
-              <span className="truncate">roman.aviation.and.tourism.pvt.ltd@gmail.com</span>
+              <span className="truncate">info@romanaviation.in</span>
             </div>
             <div className="flex items-center gap-3">
               <Globe className="h-4 w-4 text-gold shrink-0 text-gold-explicit" />

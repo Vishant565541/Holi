@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import API from "@/utils/api";
 import { TOUR_PACKAGES, TourPackage } from "@/utils/mockData";
 import { useCartStore } from "@/store/useCartStore";
@@ -78,12 +79,14 @@ function ToursListingContent() {
               className="rounded-xl overflow-hidden grid grid-cols-1 sm:grid-cols-12 group transition-all duration-300 hover:border-gold/30 high-contrast-card"
             >
               <div className="sm:col-span-5 h-64 sm:h-full relative overflow-hidden bg-secondary">
-                <img
+                <Image
                   src={pkg.image}
                   alt={pkg.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 30vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 bg-black/60 border border-white/10 px-3 py-1 rounded text-[10px] font-space tracking-widest text-gold uppercase text-gold-explicit">
+                <div className="absolute top-4 left-4 bg-black/60 border border-white/10 px-3 py-1 rounded text-[10px] font-space tracking-widest text-gold uppercase text-gold-explicit z-10">
                   {pkg.duration}
                 </div>
               </div>
@@ -225,6 +228,34 @@ function ToursListingContent() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Product JSON-LD structured schema for package listings */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": tourPackages.map((pkg, idx) => ({
+              "@type": "ListItem",
+              "position": idx + 1,
+              "item": {
+                "@type": "Product",
+                "name": pkg.name,
+                "description": pkg.tagline || "",
+                "image": pkg.image,
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "INR",
+                  "price": String(pkg.price),
+                  "availability": "https://schema.org/InStock",
+                  "priceValidUntil": "2027-12-31"
+                }
+              }
+            }))
+          })
+        }}
+      />
     </div>
   );
 }

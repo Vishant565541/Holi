@@ -115,7 +115,7 @@ export default function ContactPage() {
             <Mail className="h-4 w-4 text-gold shrink-0 text-gold-explicit" />
             <div>
               <span className="text-[8px] uppercase tracking-wider text-slate-400 block leading-none">Email Office</span>
-              <span style={{ color: '#ffffff' }} className="font-semibold text-white">roman.aviation.and.tourism.pvt.ltd@gmail.com</span>
+              <span style={{ color: '#ffffff' }} className="font-semibold text-white">info@romanaviation.in</span>
             </div>
           </div>
         </div>
@@ -328,6 +328,19 @@ export default function ContactPage() {
                 <span className="font-mono text-white text-white-explicit font-semibold text-[11px]">GST IN: 24AAPCR7672B1Z6</span>
               </div>
             </div>
+          </div>
+
+          {/* Google Maps Embed Card */}
+          <div className="bg-[#051433] rounded-xl p-4 border border-white/10 shadow-lg overflow-hidden h-[300px] high-contrast-card">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.6644781498616!2d77.08182967630043!3d28.549806475711684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1bf47b0e14a1%3A0xe21287c9362e524d!2sIndira%20Gandhi%20International%20Airport%20Terminal%203!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0, borderRadius: "0.5rem" }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>

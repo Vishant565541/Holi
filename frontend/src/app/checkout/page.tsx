@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCartStore, Passenger, AddOn } from "@/store/useCartStore";
 import { useAuthStore } from "@/store/useAuthStore";
-import { User, ShieldCheck, Ticket, Trash2, CheckCircle2, ChevronRight, Armchair } from "lucide-react";
+import { User, ShieldCheck, Ticket, Trash2, CheckCircle2, ChevronRight, Armchair, Award } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function CheckoutPage() {
@@ -74,8 +74,15 @@ export default function CheckoutPage() {
 
   const handleApplyPromo = (e: React.FormEvent) => {
     e.preventDefault();
-    if (promoInput.toUpperCase() === "AURA10") {
+    const code = promoInput.toUpperCase().trim();
+    if (code === "AURA10") {
       applyPromo("AURA10", 10);
+      setPromoError("");
+    } else if (code === "ROMANVIP") {
+      applyPromo("ROMANVIP", 10);
+      setPromoError("");
+    } else if (code === "CHARDHAM2026") {
+      applyPromo("CHARDHAM2026", 0);
       setPromoError("");
     } else {
       setPromoError("Invalid elite coupon code.");
@@ -92,7 +99,11 @@ export default function CheckoutPage() {
     
     let discount = 0;
     if (appliedPromo) {
-      discount = subtotal * (appliedPromo.discountPercent / 100);
+      if (appliedPromo.code === "CHARDHAM2026") {
+        discount = 15000;
+      } else {
+        discount = subtotal * (appliedPromo.discountPercent / 100);
+      }
     }
     
     const taxes = (subtotal - discount) * 0.18; // 18% GST
@@ -387,7 +398,7 @@ export default function CheckoutPage() {
               </div>
               {appliedPromo && (
                 <div className="flex justify-between items-center text-[10px] text-teal mt-1">
-                  <span>Coupon {appliedPromo.code} applied ({appliedPromo.discountPercent}% Off)</span>
+                  <span>Coupon {appliedPromo.code} applied ({appliedPromo.code === "CHARDHAM2026" ? "₹15,000 Off" : `${appliedPromo.discountPercent}% Off`})</span>
                   <button onClick={removePromo} className="text-red-400 hover:underline">
                     Remove
                   </button>
@@ -445,6 +456,17 @@ export default function CheckoutPage() {
               Configure Payment
               <ChevronRight className="h-4 w-4" />
             </button>
+          </div>
+
+          {/* Roman Elite Club Loyalty Banner */}
+          <div className="bg-[#051433]/70 border border-gold/20 p-4 rounded-lg flex items-center gap-3">
+            <Award className="h-5 w-5 text-gold shrink-0 animate-pulse" />
+            <div className="text-left">
+              <span className="text-[#C5A880] font-space text-[9px] uppercase font-bold tracking-widest block">Roman Elite Club</span>
+              <span className="text-[10px] text-slate-300 font-sans block mt-0.5">
+                Complete this booking to earn <strong className="text-white">1,500 Elite Tier Points</strong> for premium cabin upgrades!
+              </span>
+            </div>
           </div>
         </div>
       </div>

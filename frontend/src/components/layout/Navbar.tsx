@@ -43,6 +43,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
+    { name: "Guides", href: "/blog" },
     { name: "Careers", href: "/careers" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
@@ -66,7 +67,7 @@ export default function Navbar() {
               className="h-14 w-auto object-contain brightness-100 contrast-125" 
             />
           </Link>
- 
+
           {/* Desktop Menu links */}
           <div className="hidden lg:flex items-center gap-5 xl:gap-8">
             {navLinks.map((link) => {
@@ -88,7 +89,7 @@ export default function Navbar() {
                       <span>Services</span>
                       <ChevronDown className="h-3 w-3 text-gold" />
                     </Link>
- 
+
                     {/* Dropdown menu */}
                     <AnimatePresence>
                       {servicesHovered && (
@@ -116,7 +117,7 @@ export default function Navbar() {
                   </div>
                 );
               }
- 
+
               const isActive = pathname === link.href;
               return (
                 <Link
@@ -138,22 +139,9 @@ export default function Navbar() {
               );
             })}
           </div>
- 
+
           {/* Right Action buttons */}
           <div className="hidden lg:flex items-center gap-6">
-            {/* Cart/Booking Icon */}
-            <Link
-              href="/checkout"
-              className="relative p-2 text-slate-800 hover:text-gold transition-colors"
-            >
-              <ShoppingCart className="h-4.5 w-4.5" />
-              {item && (
-                <span className="absolute top-0 right-0 h-4 w-4 bg-gold rounded-full text-[10px] text-black font-bold flex items-center justify-center animate-pulse">
-                  1
-                </span>
-              )}
-            </Link>
- 
             {/* Dashboard / Login */}
             {isLoggedIn ? (
               <div className="flex items-center gap-4">
@@ -180,22 +168,18 @@ export default function Navbar() {
                 <span>Login / Register</span>
               </Link>
             )}
+
+            {/* Book Now Primary CTA Button */}
+            <Link
+              href="/booking"
+              className="flex items-center gap-2 font-space text-[10px] uppercase tracking-widest text-black transition-colors py-2 px-5 border border-gold rounded-full bg-gold hover:bg-gold-hover transition-all duration-300 font-bold shadow-lg shadow-gold/20"
+            >
+              <span>Book Now</span>
+            </Link>
           </div>
- 
+
           {/* Tablet & Mobile Nav Triggers */}
           <div className="flex items-center gap-4 lg:hidden">
-            <Link
-              href="/checkout"
-              className="relative p-2 text-slate-800 hover:text-gold transition-colors"
-            >
-              <ShoppingCart className="h-5 w-5" />
-              {item && (
-                <span className="absolute top-0 right-0 h-4 w-4 bg-gold rounded-full text-[10px] text-black font-bold flex items-center justify-center">
-                  1
-                </span>
-              )}
-            </Link>
- 
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 text-slate-800 hover:text-gold transition-colors"

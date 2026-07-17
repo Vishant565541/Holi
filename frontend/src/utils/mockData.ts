@@ -67,7 +67,7 @@ export const HELICOPTERS: HelicopterListing[] = [
     range: "650 km",
     safetyRating: "5.0/5.0",
     description: "The Airbus H145 is the pinnacle of luxury aviation engineering. Featuring a spacious, vibration-isolated executive cabin, club-seating configurations, and large panoramic windows, it is the premier choice for VIP transfers to holy sanctuaries and high-altitude mountain locations.",
-    image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1681281896815-bfa3b9b47e2b?q=80&w=600&auto=format&fit=crop",
     features: ["Noise Cancellation Cabin", "Climate Control", "Panoramic Glass Windows", "Refreshment Bar", "VIP Lounge Boarding"],
     specs: {
       "Engine Type": "Dual Safran Arriel 2E",
@@ -227,7 +227,7 @@ export const HOTELS: HotelListing[] = [
     location: "Udaipur, Rajasthan",
     price: 75000,
     rating: 4.9,
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600&auto=format&fit=crop",
     amenities: ["Private Boat Transfers", "Jiva Luxury Spa", "Butler Service", "Royal Dining Halls", "Historic Lake Views"],
     rooms: [
       { name: "Palace Suite (Lake View)", price: 75000, capacity: "2 Adults", size: "650 sq ft", features: ["King Bed", "Historic Artwork", "Heritage Balcony"] },

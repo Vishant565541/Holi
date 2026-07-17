@@ -31,9 +31,9 @@ export default function Footer() {
     ],
     company: [
       { name: "About Brand", href: "/about" },
+      { name: "Guides & Chronicles", href: "/blog" },
       { name: "Careers Portal", href: "/careers" },
       { name: "Contact & Support", href: "/contact" },
-      { name: "Partner Program", href: "/about#partners" },
     ],
     legal: [
       { name: "Terms of Service", href: "/terms" },
@@ -70,7 +70,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <span className="font-semibold text-gold">Email:</span>
-              <span>roman.aviation.and.tourism.pvt.ltd@gmail.com</span>
+              <span>info@romanaviation.in</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="font-semibold text-gold">GST IN:</span>
@@ -165,16 +165,6 @@ export default function Footer() {
             <a href="https://youtube.com" target="_blank" className="hover:text-gold text-xs transition-colors">YouTube</a>
             <a href="https://linkedin.com" target="_blank" className="hover:text-gold text-xs transition-colors">LinkedIn</a>
             <a href="https://twitter.com" target="_blank" className="hover:text-gold text-xs transition-colors">Twitter</a>
-          </div>
-        </div>
-
-        {/* App badges */}
-        <div className="flex items-center gap-3">
-          <div className="border border-white/10 rounded px-3 py-1 bg-white/5 text-[9px] font-space tracking-widest text-slate-400 hover:border-gold/30 transition-colors cursor-pointer">
-            APP STORE
-          </div>
-          <div className="border border-white/10 rounded px-3 py-1 bg-white/5 text-[9px] font-space tracking-widest text-slate-400 hover:border-gold/30 transition-colors cursor-pointer">
-            GOOGLE PLAY
           </div>
         </div>
       </div>
