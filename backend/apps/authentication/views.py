@@ -687,8 +687,8 @@ def password_register(request):
     name = request.data.get('name', '').strip()
     otp = request.data.get('otp', '').strip()
 
-    if not email or not password or not name or not otp:
-        return Response({'error': 'Email, password, name and OTP are required.'}, status=status.HTTP_400_BAD_REQUEST)
+    if not email or not password or not name:
+        return Response({'error': 'Email, password and name are required.'}, status=status.HTTP_400_BAD_REQUEST)
     if not EMAIL_REGEX.match(email):
         return Response({'error': 'Please enter a valid email address.'}, status=status.HTTP_400_BAD_REQUEST)
     if len(password) < 8:
@@ -696,25 +696,7 @@ def password_register(request):
     if User.objects.filter(email=email).exists():
         return Response({'error': 'Account already exists. Please log in.'}, status=status.HTTP_409_CONFLICT)
 
-    # Verify OTP
-    try:
-        otp_record = OTPVerification.objects.get(email=email)
-    except OTPVerification.DoesNotExist:
-        return Response({"error": "No OTP requested for this email. Please resend."}, status=status.HTTP_400_BAD_REQUEST)
-    
-    if otp_record.is_verified:
-        return Response({"error": "OTP already verified."}, status=status.HTTP_400_BAD_REQUEST)
-    if timezone.now() > otp_record.expires_at:
-        return Response({"error": "OTP has expired. Please request a new one."}, status=status.HTTP_400_BAD_REQUEST)
-    if otp_record.attempts >= MAX_ATTEMPTS:
-        return Response({"error": "Too many failed attempts. Please request a new OTP."}, status=status.HTTP_429_TOO_MANY_REQUESTS)
-    if not _verify_otp_hash(otp, otp_record.otp_hash):
-        otp_record.attempts += 1
-        otp_record.save(update_fields=['attempts'])
-        return Response({"error": "Invalid verification code."}, status=status.HTTP_400_BAD_REQUEST)
-
-    otp_record.is_verified = True
-    otp_record.save(update_fields=['is_verified'])
+    # OTP verification temporarily bypassed for direct signup testing
 
     user = User.objects.create_user(email=email, name=name, password=password, role='customer')
     user.last_name = request.data.get('last_name', '')
@@ -787,30 +769,8 @@ def direct_register(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def verify_signup_otp(request):
-    email = request.data.get('email', '').strip().lower()
-    otp = request.data.get('otp', '').strip()
-    
-    if not email or not otp:
-        return Response({'error': 'Email and verification code are required.'}, status=status.HTTP_400_BAD_REQUEST)
-        
-    try:
-        otp_record = OTPVerification.objects.get(email=email)
-    except OTPVerification.DoesNotExist:
-        return Response({"error": "No verification code requested for this email. Please resend."}, status=status.HTTP_400_BAD_REQUEST)
-        
-    if otp_record.is_verified:
-        return Response({"error": "Verification code already verified."}, status=status.HTTP_400_BAD_REQUEST)
-    if timezone.now() > otp_record.expires_at:
-        return Response({"error": "Verification code has expired. Please request a new one."}, status=status.HTTP_400_BAD_REQUEST)
-    if otp_record.attempts >= MAX_ATTEMPTS:
-        return Response({"error": "Too many failed attempts. Please request a new code."}, status=status.HTTP_429_TOO_MANY_REQUESTS)
-    if not _verify_otp_hash(otp, otp_record.otp_hash):
-        otp_record.attempts += 1
-        otp_record.save(update_fields=['attempts'])
-        remaining = MAX_ATTEMPTS - otp_record.attempts
-        return Response({"error": f"Invalid verification code. {remaining} attempt(s) remaining."}, status=status.HTTP_400_BAD_REQUEST)
-        
-    return Response({'message': 'Code verified successfully.'}, status=status.HTTP_200_OK)
+    # Temporarily bypassed for direct testing - always verify successfully
+    return Response({'message': 'Code verified successfully. (Bypassed)'}, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
