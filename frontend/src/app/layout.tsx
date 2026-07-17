@@ -3,6 +3,7 @@ import "./globals.css";
 import AmbientEffects from "@/components/layout/AmbientEffects";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AuthRedirectManager from "@/components/layout/AuthRedirectManager";
 
 export const metadata: Metadata = {
   title: "Roman Aviation | Luxury Helicopter & Charter Booking",
@@ -22,6 +23,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-gold/30 selection:text-white font-sans overflow-x-hidden">
         <AmbientEffects />
+        <AuthRedirectManager />
         <Navbar />
         <main className="flex-grow pt-24">{children}</main>
         <Footer />
