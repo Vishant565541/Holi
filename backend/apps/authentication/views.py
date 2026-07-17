@@ -221,6 +221,38 @@ def _send_otp_email(email: str, otp: str) -> None:
         except Exception as exc:
             print(f"[RESEND EMAIL EXCEPTION] Failed to send OTP to {email}: {exc}", flush=True)
 
+    # ── Check for Brevo API Key ─────────────────────────────────────────────
+    # If BREVO_API_KEY is defined in environment, send via Brevo HTTP REST API.
+    brevo_api_key = os.getenv('BREVO_API_KEY')
+    if brevo_api_key:
+        try:
+            sender_email = os.getenv('DEFAULT_FROM_EMAIL', 'romanaviationtourism@gmail.com')
+            # Fallback sender email parsing
+            if "<" in sender_email and ">" in sender_email:
+                sender_email = sender_email.split("<")[1].split(">")[0].strip()
+            
+            res = requests.post(
+                "https://api.brevo.com/v3/smtp/email",
+                headers={
+                    "api-key": brevo_api_key,
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "sender": {"name": "Roman Aviation", "email": sender_email},
+                    "to": [{"email": email}],
+                    "subject": subject,
+                    "htmlContent": html_content,
+                },
+                timeout=10
+            )
+            if res.status_code in [200, 201]:
+                print(f"[BREVO EMAIL SUCCESS] Successfully sent OTP to {email}", flush=True)
+                return
+            else:
+                print(f"[BREVO EMAIL ERROR] Failed to send: {res.status_code} - {res.text}", flush=True)
+        except Exception as exc:
+            print(f"[BREVO EMAIL EXCEPTION] Failed to send OTP to {email}: {exc}", flush=True)
+
     # Fallback to standard Django Email Backend (SMTP or Console)
     try:
         msg = EmailMultiAlternatives(
