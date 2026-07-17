@@ -162,15 +162,8 @@ export default function AuthPage() {
     e.preventDefault();
     setError("");
     if (!EMAIL_REGEX.test(signupEmail)) { setError("Please enter a valid email address."); return; }
-    setLoading(true);
-    try {
-      await API.post("/auth/send-register-otp", { email: signupEmail.trim().toLowerCase() });
-      setStep("signup_otp");
-    } catch (err: any) {
-      setError(err.response?.data?.error || "Failed to send verification code. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    // Skip OTP check and proceed directly to profile creation
+    setStep("signup_profile");
   };
 
   // ── Signup Step 2: Verify OTP ──────────────────────────────────────────────
@@ -470,7 +463,7 @@ export default function AuthPage() {
 
               {/* Signup header */}
               <div className="px-7 pt-6 pb-4 border-b border-white/5 flex items-center gap-3">
-                <button type="button" onClick={() => { setError(""); setStep("signup_otp"); }}
+                <button type="button" onClick={() => { setError(""); setStep("signup"); }}
                   className="text-grey-text hover:text-white transition-colors cursor-pointer p-1">
                   <ArrowLeft className="h-4 w-4" />
                 </button>
